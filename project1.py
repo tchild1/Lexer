@@ -1,0 +1,21 @@
+# THIS IS THE STARTER CODE. JUST OUTPUTS THE CORRECT ANSWER HERE:
+def project1(input):
+    return """(COMMENT,"# lots of line comments",2)
+(COMMENT,"###########################",4)
+(COMMENT,"#Schemes:",5)
+(COMMENT,"#student(Name, ID, Address, Major)",6)
+(COMMENT,"###########################",7)
+(COMMENT,"###########################",9)
+(COMMENT,"#Facts:",10)
+(COMMENT,"#student('North', '51', '10 Main', 'CS').",11)
+(COMMENT,"###########################",12)
+(COMMENT,"###########################",14)
+(COMMENT,"#Rules:",15)
+(COMMENT,"#major(Name,Major):-student(Name,ID,Address,Major).",16)
+(COMMENT,"###########################",17)
+(COMMENT,"###########################",19)
+(COMMENT,"#Queries:",20)
+(COMMENT,"#major('North',Major)?",21)
+(COMMENT,"###########################",22)
+(EOF,"",24)
+Total Tokens = 18"""
