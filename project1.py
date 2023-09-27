@@ -4,7 +4,7 @@ from project1_classes.lexer_fsm import LexerFSM
 def project1(input: str) -> str:
     lexer: LexerFSM = LexerFSM()
     lexer.run(input)
-    return "This is my answer!"
+    return
 
 def read_file_contents(filepath):
     with open(filepath, "r") as f:
@@ -12,5 +12,5 @@ def read_file_contents(filepath):
 
 # Use this to run and debug code within VS Code
 if __name__ == "__main__":
-    input_contents = read_file_contents("./project1-passoff/20/input21.txt") # Put path to input file here
+    input_contents = read_file_contents("./project1-passoff/100/input102.txt") # Put path to input file here
     print(project1(input_contents))
