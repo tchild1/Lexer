@@ -5,4 +5,4 @@ class Token():
         self.line = line_num
 
     def to_string(self) -> str:
-        ...
+        return f'({self.token_type},"{self.value}",{self.line})'

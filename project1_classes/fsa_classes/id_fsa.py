@@ -1,14 +1,15 @@
 from .fsa import FSA
 from typing import Callable
 
-class ColonDashFSA(FSA):
+class IdFSA(FSA):
     def __init__(self):
-        FSA.__init__(self, "ColonDashFSA")
-        self.accept_states.add(self.S2)
+        FSA.__init__(self, "ID")
+        self.accept_states.add(self.S1)
     
     def S0(self) -> Callable:
         next_state = None
-        if self.input_string[self.num_chars_read] != ':':
+        char = ord(self.input_string[self.num_chars_read])
+        if (not((65 <= char <= 90) or (97 <= char <= 122))):
             next_state = self.s_err
         else:
             next_state = self.S1
@@ -17,15 +18,7 @@ class ColonDashFSA(FSA):
     
     def S1(self):
         next_state = None
-        if self.input_string[self.num_chars_read] != '-':
-            next_state = self.s_err
-        else:
-            next_state = self.S2
-        self.num_chars_read += 1
-        return next_state
-    
-    def S2(self):
-        next_state = self.S2
+        next_state = self.S1
         self.num_chars_read += 1
         return next_state
     
@@ -33,4 +26,5 @@ class ColonDashFSA(FSA):
         next_state = self.s_err
         self.num_chars_read +=1
         return next_state
+    
     
