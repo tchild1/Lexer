@@ -62,9 +62,9 @@ class LexerFSM:
             if input[:1] != ' ' and input[:1] != '\n' and input[:1] != '\t':
                 output = self.lex(input)
                 if output == "UNDEFINED":
-                    lexedAnswer = lexedAnswer + Token(output,f"{input[:1]}",line).to_string() + '\n'
+                    lexedAnswer = lexedAnswer + Token(output,f"{input[:1]}",line).to_string() + '\n''\n'
                     number_of_tokens = f'Error on line {line}'
-                    lexedAnswer = lexedAnswer + 'Total Tokens = ', number_of_tokens
+                    lexedAnswer = lexedAnswer + f'Total Tokens = {number_of_tokens}'
                     return lexedAnswer
                 else:
                     if output == "COLON_DASH":
