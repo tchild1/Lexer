@@ -102,7 +102,7 @@ class LexerFSM:
 
             input = input[1:]
         lexedAnswer = lexedAnswer + Token('EOF','',line).to_string() + '\n'
-        lexedAnswer = lexedAnswer + 'Total Tokens = ', number_of_tokens
+        lexedAnswer = lexedAnswer + f'Total Tokens = {number_of_tokens}'
 
         return lexedAnswer
     
