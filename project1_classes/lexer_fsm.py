@@ -55,53 +55,56 @@ class LexerFSM:
                 return input.find(char)
                 
     def run(self, input: str) -> str:
+        lexedAnswer = ''
         number_of_tokens = 1
         line = 1
         while len(input) > 0:
             if input[:1] != ' ' and input[:1] != '\n' and input[:1] != '\t':
                 output = self.lex(input)
                 if output == "UNDEFINED":
-                    print(Token(output,f"{input[:1]}",line).to_string())
+                    lexedAnswer + Token(output,f"{input[:1]}",line).to_string()
                     number_of_tokens = f'Error on line {line}'
-                    print('Total Tokens = ', number_of_tokens)
-                    return
+                    lexedAnswer + 'Total Tokens = ', number_of_tokens
+                    return lexedAnswer
                 else:
                     if output == "COLON_DASH":
                         input = input[1:]
-                        print(Token(output,':-',line).to_string())
+                        lexedAnswer + Token(output,':-',line).to_string()
                     elif output == "COMMENT":
-                        print(Token(output,input.split('\n')[0],line).to_string())
+                        lexedAnswer + Token(output,input.split('\n')[0],line).to_string()
                         input = input[len(input.split('\n')[0]):]
                     elif output == "ID":
-                        print(Token(output,input[:self.nextNotIdChar(input)],line).to_string())
+                        lexedAnswer + Token(output,input[:self.nextNotIdChar(input)],line).to_string()
                         input = input[self.nextNotIdChar(input)-1:]
                     elif output == "SCHEMES":
-                        print(Token(output,input[:7],line).to_string())
+                        lexedAnswer + Token(output,input[:7],line).to_string()
                         input = input[6:]
                     elif output == "FACTS":
-                        print(Token(output,input[:5],line).to_string())
+                        lexedAnswer + Token(output,input[:5],line).to_string()
                         input = input[4:]
                     elif output == "RULES":
-                        print(Token(output,input[:5],line).to_string())
+                        lexedAnswer + Token(output,input[:5],line).to_string()
                         input = input[4:]
                     elif output == "QUERIES":
-                        print(Token(output,input[:7],line).to_string())
+                        lexedAnswer + Token(output,input[:7],line).to_string()
                         input = input[6:]
                     elif output == "STRING":
                         input = input[1:]
                         string = "'"
-                        print(Token(output,f"'{input[:input.find(string)]}'",line).to_string())
+                        lexedAnswer + Token(output,f"'{input[:input.find(string)]}'",line).to_string()
                         input = input[input.find("'"):]
                     else:
-                        print(Token(output,f"{input[:1]}",line).to_string())
+                        lexedAnswer + Token(output,f"{input[:1]}",line).to_string()
                     number_of_tokens += 1
 
             if input[:1] == '\n':
                 line += 1
 
             input = input[1:]
-        print(Token('EOF','',line).to_string())
-        print('Total Tokens = ', number_of_tokens)
+        lexedAnswer + Token('EOF','',line).to_string()
+        lexedAnswer + 'Total Tokens = ', number_of_tokens
+
+        return lexedAnswer
     
     def lex(self, input_string: str) -> Token:
         for FSA in self.fsa_dict.keys():
